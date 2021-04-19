@@ -11,7 +11,7 @@ void TextQuery::store_file(ifstream& is){
         lines_of_text.push_back(textline);
         count++;
     }
-    cout << "total " << count << "lines\n";
+    cout << "total " << count << " lines\n";
 }
 
 void TextQuery::build_map(){
