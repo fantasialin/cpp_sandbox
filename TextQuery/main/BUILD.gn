@@ -1,0 +1,6 @@
+executable("main") {
+  sources = [
+    "main.cpp",
+    "TextQuery.cpp",
+  ]
+}
