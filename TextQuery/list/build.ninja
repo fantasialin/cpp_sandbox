@@ -1,0 +1,29 @@
+ninja_required_version = 1.7.2
+
+rule gn
+  command = ../../../../ninja-win/gn.exe --root=./.. -q --regeneration gen .
+  pool = console
+  description = Regenerating ninja files
+
+build build.ninja: gn
+  generator = 1
+  depfile = build.ninja.d
+
+pool build_toolchain_action_pool
+  depth = 0
+
+pool build_toolchain_link_pool
+  depth = 0
+
+subninja toolchain.ninja
+
+build executable: phony obj/executable.stamp
+build main: phony ./main.exe
+build $:executable: phony obj/executable.stamp
+build main$:main: phony ./main.exe
+
+build all: phony $
+    obj/executable.stamp $
+    ./main.exe
+
+default all

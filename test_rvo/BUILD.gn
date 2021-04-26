@@ -1,0 +1,49 @@
+executable("main") {
+  sources = [
+    "RVO.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//test_rvo" ]
+}
+
+executable("RVO") {
+  sources = [
+    "RVO.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//test_rvo" ]
+}
+
+executable("noRVO") {
+  sources = [
+    "noRVO.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//test_rvo" ]
+}
+
+executable("throw_exception") {
+  sources = [
+    "throw_exception.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//test_rvo" ]
+}
+
+executable("with_rvalue_reference") {
+  sources = [
+    "with_rvalue_reference.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//test_rvo" ]
+}

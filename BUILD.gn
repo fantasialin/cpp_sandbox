@@ -1,0 +1,7 @@
+group("executable") {
+    deps = [ "//test_rvo:main",
+             "//test_rvo:RVO",
+             "//test_rvo:noRVO",
+             "//test_rvo:throw_exception",
+          ]
+}

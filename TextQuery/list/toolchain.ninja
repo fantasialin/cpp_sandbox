@@ -1,0 +1,50 @@
+rule copy
+  command = C:/Python27/python.exe ../build/toolchain/win/recursive_mirror.py ${in} ${out}
+  description = COPY ${in} ${out}
+  pool = build_toolchain_action_pool
+rule cc
+  command = ninja -t msvc -e environment_x64 -- "D:\software\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\bin\HostX64\x64/cl.exe" /nologo /showIncludes /FC ${defines} ${include_dirs} ${cflags} ${cflags_c} /c ${in} /Fo${out} /Fd"${target_out_dir}/${label_name}_c.pdb"
+  description = CC ${out}
+  deps = msvc
+rule cxx
+  command = ninja -t msvc -e environment_x64 -- "D:\software\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\bin\HostX64\x64/cl.exe" /nologo /showIncludes /FC ${defines} ${include_dirs} ${cflags} ${cflags_cc} /c ${in} /Fo${out} /Fd"${target_out_dir}/${label_name}_cc.pdb"
+  description = CXX ${out}
+  deps = msvc
+rule asm
+  command = C:/Python27/python.exe ../build/toolchain/win/asm_wrapper.py environment_x64 ml64.exe ${defines} ${include_dirs} ${asmflags} /c /Fo${out} ${in}
+  description = ASM ${out}
+rule rc
+  command = C:/Python27/python.exe ../build/toolchain/win/rc_wrapper.py environment_x64 ${in} ${out} rc.exe ${defines} ${include_dirs}
+  description = RC ${out}
+  deps = msvc
+rule stamp
+  command = cmd /c type nul > "${out}"
+  description = STAMP ${out}
+  pool = build_toolchain_action_pool
+rule link
+  command = C:/Python27/python.exe ../build/toolchain/win/link_wrapper.py environment_x64 False link.exe /nologo /OUT:${output_dir}/${target_output_name}${output_extension} /PDB:${output_dir}/${target_output_name}${output_extension}.pdb @${output_dir}/${target_output_name}${output_extension}.rsp
+  description = LINK ${out}
+  rspfile = ${output_dir}/${target_output_name}${output_extension}.rsp
+  rspfile_content = ${in_newline} ${libs} ${solibs} ${ldflags}
+  pool = build_toolchain_link_pool
+rule solink_module
+  command = C:/Python27/python.exe ../build/toolchain/win/link_wrapper.py environment_x64 False link.exe /nologo /DLL /OUT:${output_dir}/${target_output_name}${output_extension} /PDB:${output_dir}/${target_output_name}${output_extension}.pdb @${output_dir}/${target_output_name}${output_extension}.rsp
+  description = LINK_MODULE(DLL) ${out}
+  rspfile = ${output_dir}/${target_output_name}${output_extension}.rsp
+  rspfile_content = ${libs} ${solibs} ${in_newline} ${ldflags}
+  pool = build_toolchain_link_pool
+rule solink
+  command = C:/Python27/python.exe ../build/toolchain/win/link_wrapper.py environment_x64 False link.exe /nologo /IMPLIB:${output_dir}/${target_output_name}${output_extension}.lib /DLL /OUT:${output_dir}/${target_output_name}${output_extension} /PDB:${output_dir}/${target_output_name}${output_extension}.pdb @${output_dir}/${target_output_name}${output_extension}.rsp
+  description = LINK(DLL) ${out}
+  rspfile = ${output_dir}/${target_output_name}${output_extension}.rsp
+  rspfile_content = ${libs} ${solibs} ${in_newline} ${ldflags}
+  pool = build_toolchain_link_pool
+  restat = 1
+rule alink
+  command = C:/Python27/python.exe ../build/toolchain/win/link_wrapper.py environment_x64 False lib.exe /nologo ${arflags} /OUT:${out} @${out}.rsp
+  description = LIB ${out}
+  rspfile = ${out}.rsp
+  rspfile_content = ${in_newline}
+
+build obj/executable.stamp: stamp ./main.exe
+subninja obj/main/main.ninja
