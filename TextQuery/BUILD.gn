@@ -1,3 +1,10 @@
-group("executable") {
-    deps = [ "//main" ]
+executable("TextQuery") {
+  sources = [
+    "main.cpp",
+    "TextQuery.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14" ]
+  
+  include_dirs = [ "//", "//TextQuery" ]
 }
