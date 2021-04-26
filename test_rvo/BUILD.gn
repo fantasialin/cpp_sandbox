@@ -1,6 +1,6 @@
 executable("main") {
   sources = [
-    "RVO.cpp",
+    "main.cpp",
   ]
 
   cflags_cc = [ "-std=c++11", ]

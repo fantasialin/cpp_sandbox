@@ -3,5 +3,6 @@ group("executable") {
              "//test_rvo:RVO",
              "//test_rvo:noRVO",
              "//test_rvo:throw_exception",
+             "//complex:complex_main",
           ]
 }

@@ -1,0 +1,9 @@
+executable("complex_main") {
+  sources = [
+    "main.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//test_rvo" ]
+}
