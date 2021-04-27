@@ -34,7 +34,7 @@ inline complex<T>&
 complex<T>::operator -= (const complex<T>& r)
 {
     this->re -= r.re;
-    this->im -= r.re;
+    this->im -= r.im;
     return *this;
 }
 
