@@ -27,3 +27,13 @@ executable("complex_template_main") {
   
   include_dirs = [ "//", "//complex" ]
 }
+
+executable("complex_template_x_main") {
+  sources = [
+    "main_template_x.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//complex" ]
+}
