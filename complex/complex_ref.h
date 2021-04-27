@@ -1,5 +1,5 @@
-#ifndef __MY_COMPLEX__
-#define __MY_COMPLEX__
+#ifndef __MY_COMPLEX_REF__
+#define __MY_COMPLEX_REF__
 
 class complex;
 complex& __doapl (complex& ths, const complex& r);
@@ -230,4 +230,4 @@ operator << (ostream& os, const complex& x)
     return os << '(' << real(x) << ',' << imag(x) << ')';
 }
 
-#endif //__MY_COMPLEX__
+#endif //__MY_COMPLEX_REF__

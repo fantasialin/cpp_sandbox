@@ -1,4 +1,8 @@
 
+#ifndef __TEXTQUERY_EXAMPLE__
+#define __TEXTQUERY_EXAMPLE__
+
+
 #include <set>
 #include <map>
 #include <vector>
@@ -31,3 +35,5 @@ private:
     map<string, set<line_no>> word_map;
     size_t count;
 };
+
+#endif //__TEXTQUERY_EXAMPLE__

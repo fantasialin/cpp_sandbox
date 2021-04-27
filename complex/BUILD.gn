@@ -17,3 +17,13 @@ executable("complex_ref_main") {
   
   include_dirs = [ "//", "//complex" ]
 }
+
+executable("complex_template_main") {
+  sources = [
+    "main_template.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//complex" ]
+}
