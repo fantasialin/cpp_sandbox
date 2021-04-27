@@ -5,5 +5,15 @@ executable("complex_main") {
 
   cflags_cc = [ "-std=c++11", ]
   
-  include_dirs = [ "//", "//test_rvo" ]
+  include_dirs = [ "//", "//complex" ]
+}
+
+executable("complex_ref_main") {
+  sources = [
+    "main_ref.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//complex" ]
 }
