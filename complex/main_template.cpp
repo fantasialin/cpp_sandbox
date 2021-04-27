@@ -5,8 +5,9 @@
 using std::cout;
 using std::endl;
 
-typedef double T;
-//typedef float T;
+//typedef long double T;
+//typedef double T;
+typedef float T;
 
 int main(){
     complex<T> c1(2,1);    cout << c1 << endl;
@@ -59,7 +60,7 @@ int main(){
     cout << (c1 != (T)9.28) << endl;
     cout << ((T)4.28 != c1) << endl;
 
-    cout << polar(10,4) << endl;
+    cout << polar((T)10,(T)4) << endl;
     cout << conj(c1) << endl;
     cout << norm(c1) << endl;
 
