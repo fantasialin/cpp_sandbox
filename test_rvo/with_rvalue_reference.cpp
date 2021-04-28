@@ -3,7 +3,7 @@
 #include <cstring>
 #include <ctime>
 #define DIM 256
-#define LIMIT 1000 //1000000
+#define LIMIT 1000000
 
 using namespace std;
 
@@ -75,11 +75,13 @@ double runtime_with_move_semantic (const int iterative_limit)
 	}
 
 	begin = clock();
-
 	for (int iter=0; iter<iterative_limit; ++iter) {
 		VectorWithRvalue d = a+b+c;
-		d[iter&DIM] = 2;
 	}
+	//for (int iter=0; iter<iterative_limit; ++iter) {
+	//	VectorWithRvalue d = a+b+c;
+	//	d[iter&DIM] = 2;
+	//}
 
 	end = clock();
 

@@ -47,3 +47,13 @@ executable("with_rvalue_reference") {
   
   include_dirs = [ "//", "//test_rvo" ]
 }
+
+executable("without_rvalue_reference") {
+  sources = [
+    "without_rvalue_reference.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//test_rvo" ]
+}
