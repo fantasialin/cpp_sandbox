@@ -268,7 +268,7 @@ operator << (ostream& os, const complex<T>& x)
 }
 
 //declare specializations.
-template <> class complex<float>;
+//template <> class complex<float>;
 //template <> class complex<double>;
 //template <> class complex<long double>;
 

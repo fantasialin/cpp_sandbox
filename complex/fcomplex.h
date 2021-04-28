@@ -9,7 +9,7 @@ class complex<float>
 {
 public:
     complex (float r=0, float i=0): re(r), im(i){}
-    explicit complex (const complex<double>& r) {this->re = r.real(); this->im = r.imag();}
+    explicit complex (const complex<double>& r) {this->re = (float)r.real(); this->im = (float)r.imag();}
     explicit complex (const complex<long double>& r) {this->re = r.real(); this->im = r.imag();}
 
     complex& operator += (const complex& r) { return __doapl (*this, r);}

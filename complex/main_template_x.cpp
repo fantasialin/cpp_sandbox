@@ -15,6 +15,7 @@ int main(){
 
     complex<TD> c3(3.14159265359, 1.236534765);      cout << c3 << endl;
 
+    //complex<T> c4 = c3;      cout << c4 << endl;
     complex<T> c4(c3);      cout << c4 << endl;  //OK
     
     //complex<T> c5 = c3;      cout << c5 << endl; //Error note: Constructor for class 'complex<float>' is declared 'explicit'
