@@ -1,6 +1,8 @@
 #ifndef __MY_COMPLEX__
 #define __MY_COMPLEX__
 
+#include <iostream>
+
 class complex;
 complex& __doapl (complex* ths, const complex& r);
 complex& __doami (complex* ths, const complex& r);
@@ -10,6 +12,8 @@ class complex
 {
 public:
     complex (double r=0, double i=0): re(r), im(i){}
+    complex (const complex& rhs) {this->re = rhs.re; this->im = rhs.im; std::cout << "copy ctor invoked!\n";} //copy constructor
+    complex& operator = (const complex& rhs) {this->re = rhs.re; this->im = rhs.im; std::cout << "copy assignment invoked!\n"; return *this;} //copy assignment
     complex& operator += (const complex&);
     complex& operator -= (const complex&);
     complex& operator *= (const complex&);

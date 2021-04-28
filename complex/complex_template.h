@@ -1,12 +1,15 @@
 #ifndef __MY_COMPLEX_TEMPLATE__
 #define __MY_COMPLEX_TEMPLATE__
 
+#include <iostream>
 
 template <typename T>
 class complex
 {
 public:
     complex (T r=0, T i=0): re(r), im(i){}
+    complex (const complex& rhs) {this->re = rhs.re; this->im = rhs.im; std::cout << "copy ctor invoked!\n";} //copy constructor
+    complex& operator = (const complex& rhs) {this->re = rhs.re; this->im = rhs.im; std::cout << "copy assignment invoked!\n"; return *this;} //copy assignment
     complex& operator += (const complex&);
     complex& operator -= (const complex&);
     complex& operator *= (const complex&);

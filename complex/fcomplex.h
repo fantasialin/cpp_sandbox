@@ -1,6 +1,7 @@
 #ifndef __MY_FCOMPLEX__
 #define __MY_FCOMPLEX__
 
+#include <iostream>
 
 extern "C++" {
 
@@ -11,6 +12,9 @@ public:
     complex (float r=0, float i=0): re(r), im(i){}
     explicit complex (const complex<double>& r) {this->re = (float)r.real(); this->im = (float)r.imag();}
     explicit complex (const complex<long double>& r) {this->re = r.real(); this->im = r.imag();}
+
+    complex (const complex& rhs) {this->re = rhs.re; this->im = rhs.im; std::cout << "fc copy ctor invoked!\n";} //copy constructor
+    complex& operator = (const complex& rhs) {this->re = rhs.re; this->im = rhs.im; std::cout << "fc copy assignment invoked!\n"; return *this;} //copy assignment
 
     complex& operator += (const complex& r) { return __doapl (*this, r);}
     complex& operator -= (const complex& r) { return __doami (*this, r);}
