@@ -9,5 +9,6 @@ group("executable") {
               "//complex:complex_ref_main",
               "//complex:complex_template_main",
               "//complex:complex_template_x_main",
+              "//ref_count:ref_count_string",
           ]
 }

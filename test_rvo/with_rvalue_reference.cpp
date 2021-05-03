@@ -3,7 +3,7 @@
 #include <cstring>
 #include <ctime>
 #define DIM 256
-#define LIMIT 1000000
+#define LIMIT 1 //1000000
 
 using namespace std;
 
@@ -20,6 +20,7 @@ public:
 	VectorWithRvalue(const VectorWithRvalue &rhs) : size(rhs.size)
 	{
 		// deep copy is required
+		std::cout << "copy ctor invoked!\n";
 		array = new int [rhs.size];
 		memcpy(array, rhs.array, rhs.size * sizeof(int));
 	}
@@ -27,6 +28,7 @@ public:
 	// move constructor
 	VectorWithRvalue(VectorWithRvalue &&rhs) : size(rhs.size), array(rhs.array)
 	{
+		std::cout << "move ctor invoked!\n";
 		rhs.array = nullptr;
 	}
 
