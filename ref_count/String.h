@@ -38,14 +38,14 @@ private:
     }
 public:
     const char& operator[](int index) const {
-        cout << "operator[] const" << endl;
+        cout << " [ operator[] const ] " << endl;
         if(index < value->length)
             return value->data[index];
         //else
         //    return nullptr;
     }
     char& operator[](int index){
-        cout << "operator[] non-const" << endl;
+        cout << " [ operator[] non-const ] " << endl;
         //if(index >= value->length)
         //    return nullptr;
 
