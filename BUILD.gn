@@ -11,4 +11,7 @@ group("executable") {
               "//complex:complex_template_x_main",
               "//ref_count:ref_count_string",
           ]
+    if (is_win) {
+        deps -=  ["//ref_count:ref_count_string" ]
+    }
 }
