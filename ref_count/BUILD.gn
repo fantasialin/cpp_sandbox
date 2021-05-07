@@ -7,3 +7,13 @@ executable("ref_count_string") {
   
   include_dirs = [ "//", "//ref_count" ]
 }
+
+executable("RC_obj_test") {
+  sources = [
+    "RCObject.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11" ]
+
+  include_dirs = [ "//", "//ref_count" ]
+}
