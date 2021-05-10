@@ -8,8 +8,9 @@
 2. download source code e.g. git clone https://github.com/fantasialin/cpp_sandbox.git
 
 
-#build steps
-3. cd cpp_sandbox
-4. gn gen out
-5. ninja -C out
+*build steps
+
+1. cd cpp_sandbox
+2. gn gen out
+3. ninja -C out
 
