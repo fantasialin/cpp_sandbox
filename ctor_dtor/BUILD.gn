@@ -1,0 +1,9 @@
+executable("simple_ctor_dtor") {
+  sources = [
+    "main.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//ctor_dtor" ]
+}

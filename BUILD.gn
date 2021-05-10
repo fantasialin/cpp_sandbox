@@ -11,6 +11,7 @@ group("executable") {
               "//complex:complex_template_x_main",
               "//ref_count:ref_count_string",
               "//ref_count:RC_obj_test",
+              "//ctor_dtor:simple_ctor_dtor",
           ]
     if (is_win) {
         deps -=  ["//ref_count:ref_count_string" ]
