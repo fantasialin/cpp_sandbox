@@ -12,6 +12,7 @@ group("executable") {
               "//ref_count:ref_count_string",
               "//ref_count:RC_obj_test",
               "//ctor_dtor:simple_ctor_dtor",
+              "//polymorphism:shape_polymorphism",
           ]
     if (is_win) {
         deps -=  ["//ref_count:ref_count_string" ]

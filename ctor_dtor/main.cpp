@@ -96,4 +96,6 @@ int main(int argc, char **argv)
     cout << endl << "----------foo2 = foo1;" << endl;
     foo2 = foo1;
     cout << endl << "----------------------" << endl;
+
+    return 0;
 }

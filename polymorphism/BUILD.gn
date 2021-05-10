@@ -1,0 +1,19 @@
+executable("shape_polymorphism") {
+  sources = [
+    "main.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//polymorphism" ]
+}
+
+executable("shape_without_virtual_function") {
+  sources = [
+    "without.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//polymorphism" ]
+}
