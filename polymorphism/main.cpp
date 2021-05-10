@@ -6,7 +6,7 @@ class Shape
 {
 public: 
     virtual void draw() = 0;//pure virtual function
-    //virtual ~Shape() = 0;
+    virtual ~Shape() {}
 };
 
 class Rect : public Shape
@@ -52,9 +52,13 @@ int main(int argc, char **argv)
     r1.draw();
     q1.draw();
 
-    Rect *Rptr = new Rect;
+    Rect* Rptr = new Rect;
     Rptr->draw();
     delete Rptr;
+
+    Shape* Sptr = new Rect;
+    Sptr->draw();
+    delete Sptr;
 
     cout << "Shape size : " << sizeof(Shape) << endl;
     cout << "Rect size : " << sizeof(Rect) << endl;
