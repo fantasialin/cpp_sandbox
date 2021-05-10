@@ -6,6 +6,7 @@ class Shape
 {
 public: 
     virtual void draw() = 0;//pure virtual function
+    //virtual ~Shape() = 0;
 };
 
 class Rect : public Shape
