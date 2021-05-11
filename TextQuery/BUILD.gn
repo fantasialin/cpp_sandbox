@@ -7,4 +7,11 @@ executable("TextQuery") {
   cflags_cc = [ "-std=c++14" ]
   
   include_dirs = [ "//", "//TextQuery" ]
+
+  deps = [ ":test_data", ]
+}
+
+copy("test_data") {
+    sources = [ "//TextQuery/test.txt" ]
+    outputs = [ "$root_out_dir/test.txt" ]
 }
