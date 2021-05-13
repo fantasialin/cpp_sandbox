@@ -12,7 +12,8 @@ public:
 class Rect : public Shape
 {
 public:
-    virtual void draw() { cout << "Rect" << endl;}
+    virtual void draw() { cout << "Rect : " << __FUNCTION__ << endl;}
+    ~Rect() { cout << "Rect dtor" << endl;}
 private:
     int height;
     int width;
@@ -21,13 +22,15 @@ private:
 class Square : public Rect
 {
 public:
-    virtual void draw(){ cout << "Square" << endl;}
+    virtual void draw(){ cout << "Square : " << __FUNCTION__ << endl;}
+    ~Square() { cout << "Square dtor" << endl;}
 };
 
 class Ellipse : public Shape
 {
 public:
-    virtual void draw(){ cout << "Ellipse" << endl;}
+    virtual void draw(){ cout << "Ellipse : " << __FUNCTION__ << endl;}
+    ~Ellipse() { cout << "Ellipse dtor" << endl;}
 private:
     int x, y;
     int r1, r2;
@@ -36,7 +39,8 @@ private:
 class Circle : public Ellipse
 {
 public:
-    virtual void draw(){ cout << "Circle" << endl;}
+    virtual void draw(){ cout << "Circle : " << __FUNCTION__ << endl;}
+    ~Circle() { cout << "Circle dtor" << endl;}
 };
 
 void drawAll(const vector<Shape*> &v){
@@ -56,6 +60,7 @@ int main(int argc, char **argv)
     Rptr->draw();
     delete Rptr;
 
+    //if Shape class doesn't declare virtual dtor then the Rect's dtor would not be invoked.
     Shape* Sptr = new Rect;
     Sptr->draw();
     delete Sptr;
