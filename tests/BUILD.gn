@@ -1,0 +1,9 @@
+executable("cpu_test") {
+  sources = [
+    "cpu_test.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//unorderedMap" ]
+}

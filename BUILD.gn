@@ -15,6 +15,7 @@ group("executable") {
               "//polymorphism:shape_polymorphism",
               "//unorderedMap:UnorderedMapObjectAsKey",
               "//unorderedMap:20210601_test",
+              "//tests:cpu_test",
           ]
     if (is_win) {
         deps -=  ["//ref_count:ref_count_string",
