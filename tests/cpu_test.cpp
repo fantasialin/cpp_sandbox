@@ -1,14 +1,15 @@
 
-#include <iostream>
 #include <cstdlib>
+#include <cmath>
+#include <cstring>
 #include <iostream>
 #include <memory>
-#include <cstring>
 #include <chrono>
 #include <ctime>
 #include <vector>
 #include <numeric>
-#include <cmath>
+
+#include <algorithm>
 
 using namespace std;
 
@@ -49,15 +50,44 @@ int main(int argc, char **argv){
     
     //compare stddev, mean
     cout << "perform test : " << duration.size() << " times" << endl;
-    
-    double sum = std::accumulate(duration.begin(), duration.end(), 0.0);
-    double mean = sum / duration.size();
+    {
+        double sum = std::accumulate(duration.begin(), duration.end(), 0.0);
+        double mean = sum / duration.size();
 
-    double sq_sum = std::inner_product(duration.begin(), duration.end(), duration.begin(), 0.0);
-    double stdev = std::sqrt(sq_sum / duration.size() - mean * mean);
-    
-    cout << "stdev : " << stdev << endl;
-    cout << "mean : " << mean << endl;
+        double sq_sum = std::inner_product(duration.begin(), duration.end(), duration.begin(), 0.0);
+        double stdev = std::sqrt(sq_sum / duration.size() - mean * mean);
+        
+        cout << "stdev : " << stdev << endl;
+        cout << "mean : " << mean << endl;
+    }
+    {
+        double sum = std::accumulate(duration.begin(), duration.end(), 0.0);
+        double mean = sum / duration.size();
+
+        std::vector<double> diff(duration.size());
+        std::transform(duration.begin(), duration.end(), diff.begin(),
+                std::bind2nd(std::minus<double>(), mean));
+        double sq_sum = std::inner_product(diff.begin(), diff.end(), diff.begin(), 0.0);
+        double stdev = std::sqrt(sq_sum / duration.size());
+
+        cout << "stdev : " << stdev << endl;
+        cout << "mean : " << mean << endl;
+    }
+
+    {
+        double sum = std::accumulate(std::begin(duration), std::end(duration), 0.0);
+        double m =  sum / duration.size();
+
+        double accum = 0.0;
+        std::for_each (std::begin(duration), std::end(duration), [&](const double d) {
+            accum += (d - m) * (d - m);
+        });
+
+        double stdev = sqrt(accum / (duration.size()));
+
+        cout << "stdev : " << stdev << endl;
+        cout << "mean : " << m << endl;
+    }
     
     if(nullptr != pUHD){
         ::operator delete(pUHD);
