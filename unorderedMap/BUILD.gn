@@ -1,0 +1,19 @@
+executable("UnorderedMapObjectAsKey") {
+  sources = [
+    "UnorderedMapObjectAsKey.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//unorderedMap" ]
+}
+
+executable("20210601_test") {
+  sources = [
+    "main.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//unorderedMap" ]
+}

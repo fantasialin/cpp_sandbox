@@ -13,6 +13,8 @@ group("executable") {
               "//ref_count:RC_obj_test",
               "//ctor_dtor:simple_ctor_dtor",
               "//polymorphism:shape_polymorphism",
+              "//unorderedMap:UnorderedMapObjectAsKey",
+              "//unorderedMap:20210601_test",
           ]
     if (is_win) {
         deps -=  ["//ref_count:ref_count_string",
