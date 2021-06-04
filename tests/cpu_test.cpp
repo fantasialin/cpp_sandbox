@@ -54,7 +54,7 @@ int main(int argc, char **argv){
         double sum = std::accumulate(duration.begin(), duration.end(), 0.0);
         double mean = sum / duration.size();
 
-        double sq_sum = std::inner_product(duration.begin(), duration.end(), duration.begin(), 0.0);
+        double sq_sum = std::inner_product(duration.begin(), duration.end(), duration.begin(), 0.0); //d1^2 + d2^2 + ... + d1000^2
         double stdev = std::sqrt(sq_sum / duration.size() - mean * mean);
         
         cout << "stdev : " << stdev << endl;
