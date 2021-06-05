@@ -3,12 +3,13 @@
 
 using namespace std;
 
-constexpr int _debug_ = 1;
+#define _DEBUG_ 1
+constexpr int _debug_ = 0;
 
 template<typename T>
 T adder(T v) {
     #ifndef WIN32
-    #if _debug_
+    #if _DEBUG_
     cout << __PRETTY_FUNCTION__ << endl;
     #endif
     #endif
@@ -18,7 +19,7 @@ T adder(T v) {
 template<typename T, typename... Args>
 T adder(T first, Args... args){
     #ifndef WIN32
-    #if _debug_
+    #if _DEBUG_
     cout << __PRETTY_FUNCTION__ << endl;
     #endif
     #endif
@@ -37,6 +38,10 @@ int main(int argc, char **argv){
     string nNmae = adder(s1, s2, s3, s4);
 
     cout << "Novel = " << nNmae << endl;
+
+    #if _debug_
+        cout << "debug test" << endl;
+    #endif
 
     return 0;
 }
