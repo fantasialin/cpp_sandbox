@@ -26,6 +26,39 @@ T adder(T first, Args... args){
     return first + adder(args...);
 }
 
+
+template<typename T>
+bool pair_comparer(T a){
+    #ifndef WIN32
+    #if _DEBUG_
+    cout << __PRETTY_FUNCTION__ << endl;
+    #endif
+    #endif
+    //floating point might not correct to use "==" to compare
+    return false;
+}
+
+template<typename T>
+bool pair_comparer(T a, T b){
+    #ifndef WIN32
+    #if _DEBUG_
+    cout << __PRETTY_FUNCTION__ << endl;
+    #endif
+    #endif
+    //floating point might not correct to use "==" to compare
+    return a == b;
+}
+
+template<typename T, typename... Args>
+bool pair_comparer(T a, T b, Args... args) {
+    #ifndef WIN32
+    #if _DEBUG_
+    cout << __PRETTY_FUNCTION__ << endl;
+    #endif
+    #endif
+    return a == b && pair_comparer(args...);
+}
+
 int main(int argc, char **argv){
     cout << "variadic template" << endl;
 
@@ -39,9 +72,9 @@ int main(int argc, char **argv){
 
     cout << "Novel = " << nNmae << endl;
 
-    #if _debug_
-        cout << "debug test" << endl;
-    #endif
+    cout << "pair compare (1.5 , 1.5, 2, 2, 6, 6) : " << pair_comparer(1.5 , 1.5, 2, 2, 6, 6) << endl;
+    // does not compile; the compiler complains that the base case expects 2 arguments but only 1 is provied (if 1 argument base case is not provided).
+    cout << "pair compare (1.5 , 1.5, 2, 2, 6, 6, 7) : " << pair_comparer(1.5 , 1.5, 2, 2, 6, 6, 7) << endl; 
 
     return 0;
 }
