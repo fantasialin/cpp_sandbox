@@ -3,15 +3,24 @@
 
 using namespace std;
 
+constexpr int _debug_ = 1;
+
 template<typename T>
 T adder(T v) {
+    #ifndef WIN32
+    #if _debug_
+    cout << __PRETTY_FUNCTION__ << endl;
+    #endif
+    #endif
     return v;
 }
 
 template<typename T, typename... Args>
 T adder(T first, Args... args){
     #ifndef WIN32
+    #if _debug_
     cout << __PRETTY_FUNCTION__ << endl;
+    #endif
     #endif
     return first + adder(args...);
 }
