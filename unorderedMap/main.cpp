@@ -142,7 +142,9 @@ int main(int argc, char **argv){
     //std::bind
     vector<int> v {15, 35, 94, 50, 73, 58, 28,98};
     cout << count_if(v.cbegin(), v.cend(), [](int i){return i < 50;}) << endl;//lambda expression
+    #ifndef WIN32
     cout << count_if(v.cbegin(), v.cend(), bind2nd(less<int>(), 50)) << endl;//c++11
+    #endif
     using namespace std::placeholders;
     auto fn_ = bind(less<int>(), _1, 50);
     cout << count_if(v.begin(), v.end(), bind(less<int>(), _1, 50)) << endl;

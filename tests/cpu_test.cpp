@@ -60,6 +60,7 @@ int main(int argc, char **argv){
         cout << "stdev : " << stdev << endl;
         cout << "mean : " << mean << endl;
     }
+    #ifndef WIN32
     {
         double sum = std::accumulate(duration.begin(), duration.end(), 0.0);
         double mean = sum / duration.size();
@@ -73,7 +74,7 @@ int main(int argc, char **argv){
         cout << "stdev : " << stdev << endl;
         cout << "mean : " << mean << endl;
     }
-
+    #endif
     {
         double sum = std::accumulate(std::begin(duration), std::end(duration), 0.0);
         double m =  sum / duration.size();
