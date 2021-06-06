@@ -59,6 +59,28 @@ bool pair_comparer(T a, T b, Args... args) {
     return a == b && pair_comparer(args...);
 }
 
+
+template<class... Ts> struct tuple_custom {
+    #ifndef WIN32
+    #if _DEBUG_
+    cout << __PRETTY_FUNCTION__ << endl;
+    #endif
+    #endif
+};
+
+template<class T, class... Ts>
+struct tuple_custom<T, Ts...> : tuple_custom<Ts...> {
+    tuple_custom(T t, Ts... ts) : tuple_custom<Ts...>(ts...), tail(t) {
+        #ifndef WIN32
+        #if _DEBUG_
+        cout << __PRETTY_FUNCTION__ << endl;
+        #endif
+        #endif
+    }
+
+    T tail;
+};
+
 int main(int argc, char **argv){
     cout << "variadic template" << endl;
 
@@ -75,6 +97,9 @@ int main(int argc, char **argv){
     cout << "pair compare (1.5 , 1.5, 2, 2, 6, 6) : " << pair_comparer(1.5 , 1.5, 2, 2, 6, 6) << endl;
     // does not compile; the compiler complains that the base case expects 2 arguments but only 1 is provied (if 1 argument base case is not provided).
     cout << "pair compare (1.5 , 1.5, 2, 2, 6, 6, 7) : " << pair_comparer(1.5 , 1.5, 2, 2, 6, 6, 7) << endl; 
+
+
+    tuple_custom<double, uint64_t, const char*> t1(12.2, 42, "big");
 
     return 0;
 }
