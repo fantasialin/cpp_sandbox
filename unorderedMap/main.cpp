@@ -96,7 +96,7 @@ ostream& operator<<(ostream& os, const tuple<T...>& tup)
     return os << "]";
 }
 
-
+#ifndef WIN32
 template <template <typename, typename> class ContainerType, typename ValueType, typename AllocType>
 void print_container(const ContainerType<ValueType, AllocType> & c) {
     for (const auto& v : c) {
@@ -104,6 +104,7 @@ void print_container(const ContainerType<ValueType, AllocType> & c) {
     }
     cout << endl;
 }
+#endif
 
 //Implement << for pairs: this is needed to print out mappings where range
 //iteration goes over (key, value) pairs.
