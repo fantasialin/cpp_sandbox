@@ -3,7 +3,8 @@
 
 #include <iostream>
 #include <string>
-
+#include <complex>
+#include <bitset>
 
 using namespace std;
 
@@ -130,6 +131,23 @@ class tuple_ace<Head, Tail...> : private tuple_ace<Tail...> {
 };
 
 
+template<typename... Values> class tup_ace;
+template<> class tup_ace<> {};
+template<typename Head, typename... Tail>
+class tup_ace<Head, Tail...> {
+    typedef tup_ace<Tail...> composited;
+  protected:
+    composited m_tail;
+    Head m_head;
+  public:
+    tup_ace() {}
+    tup_ace(Head v, Tail... vtail) : m_head(v), m_tail(vtail...){}
+
+    Head head() { return m_head; }
+    composited& tail() { return m_tail; }
+};
+
+
 int main(int argc, char **argv){
     cout << "variadic template" << endl;
 
@@ -168,7 +186,15 @@ int main(int argc, char **argv){
 
     tuple_ace<int, float, string> t(41, 6.3, "nico");
     cout << "size of (41, 6.3, \"nico\") : " << sizeof(t) << endl;
-    cout << "tuple (41, 6.3, \"nico\") : " << t.head() << " , " << t.tail().head() << " , " << t.tail().tail().head() << endl;
+    cout << "tuple_ace (41, 6.3, \"nico\") : " << t.head() << " , " << t.tail().head() << " , " << t.tail().tail().head() << endl;
+
+    tup_ace<int, float, string> it1(41, 6.3, "nico");
+    cout << "size of (41, 6.3, \"nico\") : " << sizeof(it1) << endl;
+    cout << "tup_ace (41, 6.3, \"nico\") : " << it1.head() << " , " << it1.tail().head() << " , " << it1.tail().tail().head() << endl;
+
+    tup_ace<string, complex<int>, bitset<16>, double> it2("Ace", complex<int>(3,8), bitset<16>(377),3.141592653);
+    cout << "size of (\"Ace\", complex<int>(3,8), bitset<16>(377),3.141592653) : " << sizeof(it2) << endl;
+    cout << "tup_ace (\"Ace\", complex<int>(3,8), bitset<16>(377),3.141592653) : " << it2.head() << " , " << it2.tail().head() << " , " << it2.tail().tail().head() << " , " << it2.tail().tail().tail().head() << endl;
 
     return 0;
 }
