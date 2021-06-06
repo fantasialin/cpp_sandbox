@@ -8,6 +8,8 @@
 #include <functional>
 #include <bitset>
 #include <complex>
+#include <list>
+#include <map>
 
 using namespace std;
 
@@ -94,6 +96,31 @@ ostream& operator<<(ostream& os, const tuple<T...>& tup)
     return os << "]";
 }
 
+
+template <template <typename, typename> class ContainerType, typename ValueType, typename AllocType>
+void print_container(const ContainerType<ValueType, AllocType> & c) {
+    for (const auto& v : c) {
+        cout << v << ' ';
+    }
+    cout << endl;
+}
+
+//Implement << for pairs: this is needed to print out mappings where range
+//iteration goes over (key, value) pairs.
+template <typename T, typename U>
+ostream& operator<<(ostream& out, const pair<T,U> & p) {
+    out << "[" << p.first << ", " << p.second << "]";
+    return out;
+}
+
+template <template <typename, typename...> class ContainerType, typename ValueType, typename... Args>
+void print_container(const ContainerType<ValueType, Args...>& c) {
+    for (const auto& v : c) {
+        cout << v << " , " ;
+    }
+    cout << endl;
+}
+
 void func(int) { cout << __FUNCTION__ << endl; }
 
 struct Functor { 
@@ -155,4 +182,14 @@ int main(int argc, char **argv){
     function<void(int)> FuncArray[4] {func, Functor(), ConvertToFuncPtr(), foo::memfunc };
     for (auto& i : FuncArray)
         i(928);
+
+
+    vector<double> vd{3.14, 8.1, 3.2, 1.0};
+    print_container(vd);
+
+    list<int> li{1, 2, 3, 5};
+    print_container(li);
+
+    map<std::string, int> msi{{"foo", 42}, {"bar", 81}, {"bazzo", 4}};
+    print_container(msi);
 }
