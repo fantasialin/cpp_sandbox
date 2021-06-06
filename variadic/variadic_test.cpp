@@ -1,9 +1,13 @@
+// this example code is  reference https://eli.thegreenplace.net/2014/variadic-templates-in-c/
+// and course from internal training
+
 #include <iostream>
+#include <string>
 
 
 using namespace std;
 
-#define _DEBUG_ 1
+#define _DEBUG_ 0
 constexpr int _debug_ = 0;
 
 template<typename T>
@@ -75,6 +79,57 @@ struct tuple_custom<T, Ts...> : tuple_custom<Ts...> {
     T tail;
 };
 
+template<size_t, class> struct elem_type_holder;
+
+template<class T, class... Ts>
+struct elem_type_holder<0, tuple_custom<T, Ts...>> {
+    typedef T type;
+};
+
+template <size_t k, class T, class... Ts>
+struct elem_type_holder<k, tuple_custom<T, Ts...>> {
+    typedef typename elem_type_holder<k-1, tuple_custom<Ts...>>::type type;
+};
+
+template <size_t k, class... Ts>
+typename std::enable_if< k==0 , typename elem_type_holder<0, tuple_custom<Ts...>>::type&>::type get(tuple_custom<Ts...>& t) {
+    return t.tail;
+}
+
+template <size_t k, class T, class... Ts>
+typename std::enable_if< k!=0 , typename elem_type_holder<k, tuple_custom<T, Ts...>>::type&>::type get(tuple_custom<T, Ts...>& t) {
+    tuple_custom<Ts...>& base = t;
+    return get<k-1>(base);
+}
+
+template<typename...Values> class tuple_ace;
+template<> class tuple_ace<> {};
+
+template<typename Head, typename... Tail>
+class tuple_ace<Head, Tail...> : private tuple_ace<Tail...> {
+    typedef tuple_ace<Tail...> inherited;
+  public:
+    tuple_ace() {
+        #ifndef WIN32
+        #if _DEBUG_
+        std::cout << __PRETTY_FUNCTION__ << endl;
+        #endif
+        #endif
+    }
+    tuple_ace(Head v, Tail... vtail) : m_head(v), inherited(vtail...) {
+        #ifndef WIN32
+        #if _DEBUG_
+        std::cout << __PRETTY_FUNCTION__ << endl;
+        #endif
+        #endif
+    }
+    Head head() { return m_head; }
+    inherited& tail() { return *this; }
+  protected:
+    Head m_head;
+};
+
+
 int main(int argc, char **argv){
     cout << "variadic template" << endl;
 
@@ -93,7 +148,27 @@ int main(int argc, char **argv){
     cout << "pair compare (1.5 , 1.5, 2, 2, 6, 6, 7) : " << pair_comparer(1.5 , 1.5, 2, 2, 6, 6, 7) << endl; 
 
 
-    tuple_custom<double, uint64_t, const char*> t1(12.2, 42, "big");
+    tuple_custom<double, int, const char*> t1(12.2, 42, "big");
+    cout << "size of (12.2, 42, \"big\") : " << sizeof(t1) << endl;
+
+    cout << "0th elem is " << get<0>(t1) << "\n";
+    cout << "1th elem is " << get<1>(t1) << "\n";
+    cout << "2th elem is " << get<2>(t1) << "\n";
+
+    //set 1th element as 103
+    get<1>(t1) = 103;
+    cout << "1th elem is " << get<1>(t1) << "\n";
+
+    tuple_custom<int, float, const char*> t2(41, 6.3, "nico");
+    cout << "size of (41, 6.3, \"nico\") : " << sizeof(t2) << endl;
+
+    cout << "0th elem is " << get<0>(t2) << "\n";
+    cout << "1th elem is " << get<1>(t2) << "\n";
+    cout << "2th elem is " << get<2>(t2) << "\n";
+
+    tuple_ace<int, float, string> t(41, 6.3, "nico");
+    cout << "size of (41, 6.3, \"nico\") : " << sizeof(t) << endl;
+    cout << "tuple (41, 6.3, \"nico\") : " << t.head() << " , " << t.tail().head() << " , " << t.tail().tail().head() << endl;
 
     return 0;
 }
