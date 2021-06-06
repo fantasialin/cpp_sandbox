@@ -60,13 +60,7 @@ bool pair_comparer(T a, T b, Args... args) {
 }
 
 
-template<class... Ts> struct tuple_custom {
-    #ifndef WIN32
-    #if _DEBUG_
-    std::cout << __PRETTY_FUNCTION__ << endl;
-    #endif
-    #endif
-};
+template<class... Ts> struct tuple_custom {};
 
 template<class T, class... Ts>
 struct tuple_custom<T, Ts...> : tuple_custom<Ts...> {
