@@ -18,6 +18,7 @@ group("executable") {
               "//tests:cpu_test",
               "//variadic:variadic_test",
               "//variadic:tuple_test",
+              "//rvalue_ref:mystring_test",
           ]
     if (is_win) {
         deps -=  ["//ref_count:ref_count_string",

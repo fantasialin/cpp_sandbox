@@ -1,0 +1,9 @@
+executable("mystring_test") {
+  sources = [
+    "mystring.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//rvalue_ref" ]
+}
