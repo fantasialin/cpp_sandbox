@@ -7,3 +7,13 @@ executable("variadic_test") {
   
   include_dirs = [ "//", "//variadic" ]
 }
+
+executable("tuple_test") {
+  sources = [
+    "tuple_test.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++11", ]
+  
+  include_dirs = [ "//", "//variadic" ]
+}

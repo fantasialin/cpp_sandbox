@@ -17,6 +17,7 @@ group("executable") {
               "//unorderedMap:20210601_test",
               "//tests:cpu_test",
               "//variadic:variadic_test",
+              "//variadic:tuple_test",
           ]
     if (is_win) {
         deps -=  ["//ref_count:ref_count_string",
