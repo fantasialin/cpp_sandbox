@@ -9,6 +9,31 @@
 
 using namespace std;
 
+
+template <size_t n, typename... T>
+typename enable_if<(n >= sizeof...(T))>::type
+    print_tuple(std::ostream&, const tuple<T...>&)
+{}
+
+template <size_t n, typename... T>
+typename enable_if<(n < sizeof...(T))>::type
+    print_tuple(ostream& os, const tuple<T...>& tup)
+{
+    if (n != 0)
+        os << ", ";
+    os << get<n>(tup);
+    print_tuple<n+1>(os, tup);
+}
+
+template <typename... T>
+ostream& operator<<(ostream& os, const tuple<T...>& tup)
+{
+    os << "[";
+    print_tuple<0>(os, tup);
+    return os << "]";
+}
+
+
 int main(int argc, char **argv){
     cout << "tupple test" << endl;
 
@@ -51,10 +76,10 @@ int main(int argc, char **argv){
     }
 
     t1 = t2;//OK, assigns value from value
-    #if WIN32
-    cout << t1 << endl;
-    cout << t2 << endl;
-    #endif
+
+    cout << t1 << endl; //compiling error if doesn't implement operator<< for tuple
+    cout << t2 << endl; //compiling error if doesn't implement operator<< for tuple
+
 
     tuple<int, float, string> t3(77, 1.1, "more light");
     int i1;
