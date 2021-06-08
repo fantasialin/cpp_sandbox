@@ -59,12 +59,12 @@ class MyString {
     }
 
     bool
-    operator<(const MyString& rhs) const {
+    operator<(const MyString& rhs) const {  // for set
         return std::string(this->_data) < std::string(rhs._data);
     }
 
     bool
-    operator==(const MyString& rhs) const {
+    operator==(const MyString& rhs) const {  // for set
         return std::string(this->_data) == std::string(rhs._data);
     }
 
@@ -182,10 +182,32 @@ int main(int argc, char **argv){
 
     MyString str("Hello World!");
     cout << str << endl;
-    {
+    { // Rvalue
         std::vector<MyString> vec_MyS(50000);
         test_moveable(vec_MyS, TIMES, Rvalue);
         cout << "container size() = " << vec_MyS.size() << endl;
+
+        std::list<MyString> lst_MyS(50000);
+        test_moveable(lst_MyS, TIMES, Rvalue);
+        cout << "container size() = " << lst_MyS.size() << endl;
+
+        std::deque<MyString> deq_MyS(50000);
+        test_moveable(deq_MyS, TIMES, Rvalue);
+        cout << "container size() = " << deq_MyS.size() << endl;
+    }
+
+    { // Lvalue
+        std::vector<MyString> vec_MyS(50000);
+        test_moveable(vec_MyS, TIMES, Lvalue);
+        cout << "container size() = " << vec_MyS.size() << endl;
+
+        std::list<MyString> lst_MyS(50000);
+        test_moveable(lst_MyS, TIMES, Lvalue);
+        cout << "container size() = " << lst_MyS.size() << endl;
+
+        std::deque<MyString> deq_MyS(50000);
+        test_moveable(deq_MyS, TIMES, Lvalue);
+        cout << "container size() = " << deq_MyS.size() << endl;
     }
 
     return 0;
