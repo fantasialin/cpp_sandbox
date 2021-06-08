@@ -11,7 +11,7 @@ class Airplane {
 
   private :
     union {
-        AirPlaneRep                                  rep;
+        AirPlaneRep rep;
         Airplane* next;
     };
 
@@ -37,15 +37,18 @@ const int Airplane::BLOCK_SIZE = 512;
 
 void* Airplane::operator new(size_t size) {
 
-    if( size != sizeof(Airplane)) //inheritance case
+    if( size != sizeof(Airplane)) {//inheritance case
         return ::operator new(size);
+    }
 
     Airplane* p = headOfFreeList;
     if(p){
+        //cout << "get a block from pool" << endl;
         headOfFreeList = p->next;
     }
     else{
         //free list empty, allocate another pool
+        //cout << "allocate a pool" << endl;
         Airplane* newBlock = static_cast<Airplane*> (::operator new(BLOCK_SIZE * sizeof(Airplane)));
 
         //slice pool to a small block as free list
