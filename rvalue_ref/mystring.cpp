@@ -140,9 +140,53 @@ namespace std
 
 enum RV { Rvalue, Lvalue };
 
+template<typename Container>
+void test_moveable(Container& cntr, long times, RV option){
+    typedef typename iterator_traits<typename Container::iterator>::value_type ElemType;
+    typedef typename Container::value_type ElemType2;
+
+    char buf[10];
+    //clock_t timeStart = clock();
+    auto start_ = chrono::high_resolution_clock::now();
+    for(long i = 0; i < times; ++i) {
+        snprintf(buf, 10, "%d", rand());
+        auto itr = cntr.end();
+        if(Rvalue == option)
+            cntr.insert(itr, ElemType(buf));
+        else {
+            ElemType elem(buf);
+            cntr.insert(itr, elem);
+        }
+
+    }
+    //cout << "ms : " << (clock() - timeStart) << endl;
+    auto stop_ = chrono::high_resolution_clock::now();
+    auto delta = chrono::duration_cast<chrono::microseconds>(stop_ - start_);
+    cout << "duration : " << (delta.count()/1000.0f) << " ms\n";
+    (*(cntr.begin())).BIG5_statistics_output();
+    (*(cntr.begin())).BIG5_statistics_reset();
+}
+
+#include <vector>
+#include <list>
+#include <deque>
+#include <map>
+#include <set>
+#include <unordered_set>
+#include <unordered_map>
+
+constexpr long TIMES = 100000;
 
 int main(int argc, char **argv){
     cout << "mystring - rvalue ref test" << endl;
+
+    MyString str("Hello World!");
+    cout << str << endl;
+    {
+        std::vector<MyString> vec_MyS(50000);
+        test_moveable(vec_MyS, TIMES, Rvalue);
+        cout << "container size() = " << vec_MyS.size() << endl;
+    }
 
     return 0;
 }
