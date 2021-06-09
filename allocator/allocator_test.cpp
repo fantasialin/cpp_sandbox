@@ -94,7 +94,7 @@ int main(int argc, char **argv){
     p[3]->set(50000, 'C');
 
     for (int i = 0; i < 10; ++i){
-        cout << p[i] << p[i]->getType() << " " << p[i]->getMiles() << endl;
+        cout << p[i] << " " << p[i]->getType() << " " << p[i]->getMiles() << endl;
     }
 
     for (int i = 0; i < N; ++i){
