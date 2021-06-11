@@ -80,6 +80,8 @@ void Airplane::operator delete(void* deadObject, size_t size) {
 int main(int argc, char **argv){
     cout << "allocator test" << endl;
 
+    //cout << "size of unsigned long = " << sizeof(unsigned long) << endl;
+    //cout << "size of char = " << sizeof(char) << endl;
     cout << "size of Airplane = " << sizeof(Airplane) << endl;
     size_t const N = 100;
     Airplane* p[N]; //100 pointer of Airplane
