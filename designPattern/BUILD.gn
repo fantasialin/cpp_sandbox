@@ -1,0 +1,5 @@
+group("designPatterns") {
+  deps = [ 
+    "//designPattern/TemplateMethod:test_templateMethod",
+  ]
+}
