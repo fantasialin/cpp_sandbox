@@ -4,5 +4,6 @@ group("designPatterns") {
     "//designPattern/strategy:test_strategy_dynamic",
     "//designPattern/strategy:test_strategy_static",
     "//designPattern/command:test_ace_command",
+    "//designPattern/command:test_bank_command",
   ]
 }

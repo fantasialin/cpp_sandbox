@@ -4,7 +4,8 @@
 
 using namespace std;
 
-class Command {
+class Command 
+{
   public :
     virtual ~Command() {
         cout << "Command dtor" << endl;
@@ -18,7 +19,8 @@ class Command {
 };
 
 template <typename Receiver>
-class SimpleCommand : public Command {
+class SimpleCommand : public Command 
+{
   public :
     typedef void (Receiver::* Action)();
 
@@ -38,8 +40,8 @@ void SimpleCommand<Receiver>::Execute() {
 }
 
 
-class MacroCommand : public Command {
-
+class MacroCommand : public Command 
+{
   public :
     //MacroCommand() {}
     //virtual ~MacroCommand() {}
@@ -68,17 +70,19 @@ void MacroCommand::Execute() {
     }
 }
 
-class MyClass1 {
+class MyClass1 
+{
   public :
     void Action() { cout << "MyClass1::Action()" << endl; }
 };
 
-class MyClass2 {
+class MyClass2 
+{
   public :
     void Action() { cout << "MyClass2::Action()" << endl; }
 };
 
-int main(int argc, char **argv){
+int main(int argc, char **argv) {
     cout << "Command - ace SimpleCommand<> test" << endl;
     MyClass1 receiver1;
     Command* cmd1 = new SimpleCommand<MyClass1>(&receiver1, &MyClass1::Action);
