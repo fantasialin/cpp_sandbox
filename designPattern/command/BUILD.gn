@@ -37,3 +37,13 @@ executable("test_command_app_fw_factory") {
   
   include_dirs = [ "//", "//designPattern/command" ]
 }
+
+executable("test_cmd_app_fw_factory_singleton") {
+  sources = [
+    "cmd_app_fw_factory_singleton.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14" ]
+  
+  include_dirs = [ "//", "//designPattern/command" ]
+}
