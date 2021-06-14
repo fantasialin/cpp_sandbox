@@ -6,6 +6,9 @@
 
 using namespace std;
 
+#define _DEBUG_ 1
+constexpr int _debug_ = 1;
+
 enum class OutputFormat
 {
     Markdown,
@@ -15,7 +18,8 @@ enum class OutputFormat
 struct ListStrategy
 {
   public :
-    //virtual ~ListStrategy() = default;
+    //~ListStrategy() { cout << "dtor - ListStrategy " << endl; }
+    virtual ~ListStrategy() {}
     virtual void add_list_item(ostringstream& oss, const string& item) = 0;
     virtual void start(ostringstream& oss) = 0;
     virtual void end(ostringstream& oss) = 0;
@@ -24,6 +28,15 @@ struct ListStrategy
 struct MarkdownListStrategy : ListStrategy
 {
   public :
+    ~MarkdownListStrategy() { 
+        #if _DEBUG_
+        #ifndef WIN32
+        cout << __PRETTY_FUNCTION__ << endl;
+        #else
+        cout << "dtor - MarkdownListStrategy " << endl; 
+        #endif
+        #endif
+    }
     virtual void start(ostringstream& oss) override {}
     virtual void end(ostringstream& oss) override {}
     virtual void add_list_item(ostringstream& oss, const string& item) override {
@@ -34,6 +47,15 @@ struct MarkdownListStrategy : ListStrategy
 struct HtmlListStrategy : ListStrategy
 {
   public :
+    ~HtmlListStrategy() { 
+        #if _DEBUG_
+        #ifndef WIN32
+        cout << __PRETTY_FUNCTION__ << endl;
+        #else
+        cout << "dtor - HtmlListStrategy " << endl; 
+        #endif
+        #endif
+    }
     virtual void start(ostringstream& oss) override {
         oss << "<ul>" << endl;
     }
