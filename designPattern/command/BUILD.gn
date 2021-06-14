@@ -27,3 +27,13 @@ executable("test_app_framework_command") {
   
   include_dirs = [ "//", "//designPattern/command" ]
 }
+
+executable("test_command_app_fw_factory") {
+  sources = [
+    "command_app_fw_factory.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14" ]
+  
+  include_dirs = [ "//", "//designPattern/command" ]
+}

@@ -6,5 +6,6 @@ group("designPatterns") {
     "//designPattern/command:test_ace_command",
     "//designPattern/command:test_bank_command",
     "//designPattern/command:test_app_framework_command",
+    "//designPattern/command:test_command_app_fw_factory",
   ]
 }
