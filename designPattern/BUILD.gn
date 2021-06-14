@@ -2,5 +2,7 @@ group("designPatterns") {
   deps = [ 
     "//designPattern/TemplateMethod:test_templateMethod",
     "//designPattern/strategy:test_strategy_dynamic",
+    "//designPattern/strategy:test_strategy_static",
+    "//designPattern/command:test_ace_command",
   ]
 }
