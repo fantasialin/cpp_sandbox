@@ -1,0 +1,27 @@
+executable("test_strategy_dynamic") {
+  sources = [
+    "dynamic.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14" ]
+  
+  include_dirs = [ "//", "//designPattern/strategy" ]
+}
+
+
+executable("test_strategy_layout") {
+  sources = [
+    "layout.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14" ]
+  
+  include_dirs = [ "//", "//designPattern/strategy" ]
+
+  deps = [ ":test_data", ]
+}
+
+copy("test_data") {
+    sources = [ "//designPattern/strategy/quote.txt" ]
+    outputs = [ "$root_out_dir/quote.txt" ]
+}
