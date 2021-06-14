@@ -9,6 +9,16 @@ executable("test_strategy_dynamic") {
 }
 
 
+executable("test_strategy_static") {
+  sources = [
+    "static.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14" ]
+  
+  include_dirs = [ "//", "//designPattern/strategy" ]
+}
+
 executable("test_strategy_layout") {
   sources = [
     "layout.cpp",
