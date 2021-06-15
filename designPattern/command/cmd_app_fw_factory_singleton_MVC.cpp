@@ -291,10 +291,10 @@ int main(int argc, char **argv) {
     cmd2.Execute();
 
     //cout << "Command - MacroCommand test" << endl;
-    //MacroCommand macroCmd;
-    //macroCmd.Add(&cmd1);
-    //macroCmd.Add(&cmd2);
-    //macroCmd.Execute();
+    MacroCommand macroCmd;
+    macroCmd.Add((Command*)&cmd1);
+    macroCmd.Add(&cmd2);
+    macroCmd.Execute();
 
     cout << "test Document-View (Subject-Observers)" << endl;
     MyView1* mv1_1 = new MyView1(doc);
