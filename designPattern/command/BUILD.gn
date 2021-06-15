@@ -47,3 +47,13 @@ executable("test_cmd_app_fw_factory_singleton") {
   
   include_dirs = [ "//", "//designPattern/command" ]
 }
+
+executable("test_cmd_app_fw_factory_singleton_MVC") {
+  sources = [
+    "cmd_app_fw_factory_singleton_MVC.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14" ]
+  
+  include_dirs = [ "//", "//designPattern/command" ]
+}

@@ -8,5 +8,6 @@ group("designPatterns") {
     "//designPattern/command:test_app_framework_command",
     "//designPattern/command:test_command_app_fw_factory",
     "//designPattern/command:test_cmd_app_fw_factory_singleton",
+    "//designPattern/command:test_cmd_app_fw_factory_singleton_MVC",
   ]
 }
