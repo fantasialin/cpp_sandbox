@@ -57,6 +57,8 @@ class Document
       changed = true;
     }
 
+    virtual int GetState() = 0;
+
     virtual Document* Serialize() = 0; //pure virtual function
 
   private :
@@ -104,6 +106,7 @@ class Command
     virtual ~Command() {
         cout << "Command dtor" << endl;
     }
+
     virtual void Execute() = 0;
 
   protected :
@@ -227,7 +230,7 @@ class MyApp : public Application
 class MyView1 : View
 {
   public :
-    MyView1(MyDoc* myDoc) : subject(myDoc) {
+    MyView1(Document* doc) : subject(doc) {
       subject->Attach(this);
     }
 
@@ -236,13 +239,13 @@ class MyView1 : View
     }
 
   private :
-    MyDoc* subject;
+    Document* subject;
 };
 
 class MyView2 : View
 {
   public :
-    MyView2(MyDoc* myDoc) : subject(myDoc) {
+    MyView2(Document* doc) : subject(doc) {
       subject->Attach(this);
     }
 
@@ -251,13 +254,13 @@ class MyView2 : View
     }
 
   private :
-    MyDoc* subject;
+    Document* subject;
 };
 
 class MyView3 : View
 {
   public :
-    MyView3(MyDoc* myDoc) : subject(myDoc) {
+    MyView3(Document* doc) : subject(doc) {
       subject->Attach(this);
     }
 
@@ -266,7 +269,7 @@ class MyView3 : View
     }
 
   private :
-    MyDoc* subject;
+    Document* subject;
 };
 
 
@@ -287,11 +290,31 @@ int main(int argc, char **argv) {
     PasteCommand cmd2(doc);
     cmd2.Execute();
 
-    cout << "Command - MacroCommand test" << endl;
+    //cout << "Command - MacroCommand test" << endl;
     //MacroCommand macroCmd;
     //macroCmd.Add(&cmd1);
     //macroCmd.Add(&cmd2);
     //macroCmd.Execute();
+
+    cout << "test Document-View (Subject-Observers)" << endl;
+    MyView1* mv1_1 = new MyView1(doc);
+    MyView1* mv1_2 = new MyView1(doc);
+    MyView1* mv1_3 = new MyView1(doc);
+    MyView2* mv2 = new MyView2(doc);
+    MyView3* mv3 = new MyView3(doc);
+
+    //change data
+    doc->LButtonDown();
+    doc->LButtonDown();
+    doc->LButtonDown();
+
+    delete mv1_1;
+    delete mv1_2;
+    delete mv1_3;
+    delete mv2;
+    delete mv3;
+
+    delete app;
 
     return 0;
 }
