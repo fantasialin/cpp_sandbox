@@ -9,5 +9,9 @@ group("designPatterns") {
     "//designPattern/command:test_command_app_fw_factory",
     "//designPattern/command:test_cmd_app_fw_factory_singleton",
     "//designPattern/command:test_cmd_app_fw_factory_singleton_MVC",
+    "//designPattern/factory:test_abstractFactory",
+    "//designPattern/factory:test_innerAbstractFactory",
+    "//designPattern/factory:test_af_shape",
+    "//designPattern/factory:test_af_hotdrink",
   ]
 }
