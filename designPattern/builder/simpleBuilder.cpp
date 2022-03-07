@@ -141,8 +141,9 @@ int main(int argc, char **argv){
 
     //fluent builder2
     cout << "add build2 interface int HtmlElement\n";
-    auto fluPtrbuilder3 = HtmlElement::build2("ul")->add_child( "li", "hello" )->add_child( "li", "world" );
-    cout << fluPtrbuilder3 << endl;
+    auto fluPtrbuilder3 = HtmlElement::build2("ul");
+    fluPtrbuilder3->add_child( "li", "hello" )->add_child( "li", "world" );
+    cout << fluPtrbuilder3->str() << endl;
 
     return 0;
 }

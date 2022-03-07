@@ -7,3 +7,13 @@ executable("test_simpleBuilder") {
   
   include_dirs = [ "//", "//designPattern/builder" ]
 }
+
+executable("test_innerBuilder") {
+  sources = [
+    "innerBuilder.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14" ]
+  
+  include_dirs = [ "//", "//designPattern/builder" ]
+}
