@@ -13,5 +13,6 @@ group("designPatterns") {
     "//designPattern/factory:test_innerAbstractFactory",
     "//designPattern/factory:test_af_shape",
     "//designPattern/factory:test_af_hotdrink",
+    "//designPattern/builder:test_simpleBuilder",
   ]
 }
