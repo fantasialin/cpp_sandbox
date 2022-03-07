@@ -17,3 +17,13 @@ executable("test_innerBuilder") {
   
   include_dirs = [ "//", "//designPattern/builder" ]
 }
+
+executable("test_personBuilder") {
+  sources = [
+    "person.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14" ]
+  
+  include_dirs = [ "//", "//designPattern/builder" ]
+}
