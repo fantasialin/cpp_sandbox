@@ -90,5 +90,12 @@ int main(int argc, char **argv){
         ->odometerMiles(20000)->build();
 
     cout << automobile;
+
+    Automobile truck = Automobile::Builder().numberOfTires(8)
+        ->bodyType("truck")
+        ->engineType("V8")->build();
+
+    cout << truck;
+    
     return 0;
 };
