@@ -7,65 +7,88 @@
 
 using namespace std;
 
-class HtmlBuilder;
-class HtmlElement;
+class Automobile {
+private:
+    int numberOfTires;
+    std::string bodyType;
+    std::string engineType;
+    int fuelTankSizeInGallons;
+    bool airConditioned;
+    int odometerMiles;
 
-class HtmlElement
-{
-  private:
-    string name;
-    string text;
-    vector<HtmlElement> elements;
-    const size_t indent_size = 2;
+public:
 
-    HtmlElement() {}
-    HtmlElement(const string& name, const string& text)
-        : name(name), text(text) {}
-    friend class HtmlBuilder;
+    class Builder {
+    public:        
+        int numTires = 0;
+        std::string body = "";
+        std::string engine = "";
+        int fuelTankSize = 0;
+        bool airCondition = false;
+        int odometer = 0;
 
-  public:
-    string str(int indent = 0) const
-    {
-        // pretty-print the contents
-        ostringstream oss;
-        string i(indent_size*indent, ' ');
-        oss << i << "<" << name << ">" << endl;
-        if (text.size() > 0)
-        oss << string(indent_size*(indent + 1), ' ') << text << endl;
+        Builder* numberOfTires(int numberOfTires) {
+            this->numTires = numberOfTires;
+            return this;
+        }
 
-        for (const auto& e : elements)
-        oss << e.str(indent + 1);
+        Builder* bodyType(std::string bodyType) {
+            this->body = bodyType;
+            return this;
+        }
 
-        oss << i << "</" << name << ">" << endl;
-        return oss.str();
-    }
-    static unique_ptr<HtmlBuilder> build(string root_name)
-    {
-        return make_unique<HtmlBuilder>(root_name);
-    }
+        Builder* engineType(std::string engineType) {
+            this->engine = engineType;
+            return this;
+        }
+
+        Builder* fuelTankSizeInGallons(int fuelTankSizeInGallons) {
+            this->fuelTankSize = fuelTankSizeInGallons;
+            return this;
+        }
+
+        Builder* airConditioned(bool airConditioned) {
+            this->airCondition = airConditioned;
+            return this;
+        }
+
+        Builder* odometerMiles(int odometerMiles) {
+            this->odometer = odometerMiles;
+            return this;
+        }
+
+        Automobile build() {
+            return Automobile(*this);
+        }
+    };
+
+    Automobile(Builder builder)
+            : numberOfTires(builder.numTires), bodyType(builder.body), engineType(builder.engine),
+            fuelTankSizeInGallons(builder.fuelTankSize), airConditioned(builder.airCondition),
+            odometerMiles(builder.odometer) {}
+
+    friend ostream& operator<<(ostream&  os, const Automobile& obj);
 };
 
-class HtmlBuilder
+ostream& operator<<(ostream& os, const Automobile& obj)
 {
-  public:
-    HtmlBuilder(string root_name){ root.name = root_name; }
-    HtmlBuilder* add_child(string child_name, string child_text)
-    {
-        HtmlElement elm{ child_name, child_text};
-        root.elements.emplace_back(elm);
-        return this;//return a pointer of itself
-    }
-
-    string str() { return root.str(); }
-
-  private:
-    HtmlElement root;
-};
+    return os << obj.numberOfTires << " tires, "
+              << obj.bodyType << " body type, "
+              << obj.engineType << " engine, "
+              << obj.fuelTankSizeInGallons << " fuel tank size, "
+              << obj.airConditioned << " air condition, "
+              << obj.odometerMiles << " odo meter miles\n";
+}
 
 int main(int argc, char **argv){
     cout << "Builder - inner test" << endl;
-    auto builder = HtmlElement::build("ul");
-    builder->add_child( "li", "hello" )->add_child( "li", "world" );
-    cout << builder->str() << endl;
+    Automobile automobile = Automobile::Builder().numberOfTires(4)
+        ->bodyType("coupe")
+        ->engineType("V8")
+        ->fuelTankSizeInGallons(16)
+        ->airConditioned(true)
+        ->odometerMiles(20000)->build();
+
+    cout << automobile;
     return 0;
 };

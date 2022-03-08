@@ -15,5 +15,6 @@ group("designPatterns") {
     "//designPattern/factory:test_af_hotdrink",
     "//designPattern/builder:test_simpleBuilder",
     "//designPattern/builder:test_innerBuilder",
+    "//designPattern/builder:test_fluentBuilder",
   ]
 }
