@@ -1,0 +1,9 @@
+executable("test_0001") {
+  sources = [
+    "main.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14" ]
+  
+  include_dirs = [ "//", ]
+}

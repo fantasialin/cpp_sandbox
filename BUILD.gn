@@ -21,6 +21,7 @@ group("executable") {
               "//rvalue_ref:mystring_test",
               "//allocator:allocator_test",
               "//designPattern:designPatterns",
+              "//exercise:exercises",
           ]
     if (is_win) {
         deps -=  ["//ref_count:ref_count_string",

@@ -1,0 +1,5 @@
+group("exercises") {
+  deps = [ 
+    "//exercise/0001:test_0001",
+  ]
+}
