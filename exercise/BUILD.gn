@@ -2,5 +2,6 @@ group("exercises") {
   deps = [ 
     "//exercise/0001:test_0001",
     "//exercise/0002:test_0002",
+    "//exercise/0003:test_0003",
   ]
 }
