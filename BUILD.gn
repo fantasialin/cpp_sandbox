@@ -16,12 +16,14 @@ group("executable") {
               "//unorderedMap:UnorderedMapObjectAsKey",
               "//unorderedMap:20210601_test",
               "//tests:cpu_test",
+              "//tests:callback_test",
               "//variadic:variadic_test",
               "//variadic:tuple_test",
               "//rvalue_ref:mystring_test",
               "//allocator:allocator_test",
               "//designPattern:designPatterns",
               "//exercise:exercises",
+              "//thread:thread_lamda_test",
           ]
     if (is_win) {
         deps -=  ["//ref_count:ref_count_string",
