@@ -1,0 +1,60 @@
+executable("thread_lamda_test") {
+  sources = [
+    "thread_lamda.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14", ]
+  
+  include_dirs = [ "//", "//thread" ]
+}
+
+executable("thread_non_static_test") {
+  sources = [
+    "thread_non_static.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14", ]
+  
+  include_dirs = [ "//", "//thread" ]
+}
+
+executable("thread_static_test") {
+  sources = [
+    "thread_static.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14", ]
+  
+  include_dirs = [ "//", "//thread" ]
+}
+
+executable("thread_mutex_test") {
+  sources = [
+    "thread_mutex.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14", ]
+  
+  include_dirs = [ "//", "//thread" ]
+}
+
+executable("thread_multi_mutex_test") {
+  sources = [
+    "thread_multi_mutex.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14", ]
+  
+  include_dirs = [ "//", "//thread" ]
+}
+
+executable("thread_trylock_test") {
+  sources = [
+    "thread_trylock.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14", ]
+  
+  include_dirs = [ "//", "//thread" ]
+}
+

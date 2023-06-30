@@ -5,5 +5,56 @@ executable("cpu_test") {
 
   cflags_cc = [ "-std=c++11", ]
   
-  include_dirs = [ "//", "//unorderedMap" ]
+  include_dirs = [ "//", "//tests" ]
+}
+
+
+executable("callback_test") {
+  sources = [
+    "callback_test.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14", ]
+  
+  include_dirs = [ "//", "//tests" ]
+}
+
+executable("bind_test") {
+  sources = [
+    "bind_test.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14", ]
+  
+  include_dirs = [ "//", "//tests" ]
+}
+
+executable("placeholder_test") {
+  sources = [
+    "placeholder_test.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14", ]
+  
+  include_dirs = [ "//", "//tests" ]
+}
+
+executable("function_test") {
+  sources = [
+    "function_test.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14", ]
+  
+  include_dirs = [ "//", "//tests" ]
+}
+
+executable("move_test") {
+  sources = [
+    "move_test.cpp",
+  ]
+
+  cflags_cc = [ "-std=c++14", ]
+  
+  include_dirs = [ "//", "//tests" ]
 }
