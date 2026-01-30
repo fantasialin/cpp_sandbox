@@ -60,7 +60,7 @@ int main(int argc, char **argv){
         cout << "stdev : " << stdev << endl;
         cout << "mean : " << mean << endl;
     }
-    #ifndef WIN32
+    #if !defined(WIN32) && !defined(__APPLE__)
     {
         double sum = std::accumulate(duration.begin(), duration.end(), 0.0);
         double mean = sum / duration.size();
