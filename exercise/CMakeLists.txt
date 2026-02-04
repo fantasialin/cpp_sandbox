@@ -2,7 +2,8 @@ set(test_src
     0001 
     0002
     0003
-    0004)
+    0004
+    0005)
 
 
 foreach(test_code ${test_src})
