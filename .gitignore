@@ -39,6 +39,8 @@ out/
 
 build/
 
+build_x/
+
 build_debug.bat
 build_release.bat
 config.bat

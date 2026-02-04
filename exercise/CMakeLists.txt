@@ -1,11 +1,12 @@
-add_executable(0001_test 0001/main.cpp)
-set_target_properties(0001_test PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
-target_link_libraries(0001_test)
+set(test_src
+    0001 
+    0002
+    0003)
 
-add_executable(0002_test 0002/main.cpp)
-set_target_properties(0002_test PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
-target_link_libraries(0002_test)
 
-add_executable(0003_test 0003/main.cpp)
-set_target_properties(0003_test PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
-target_link_libraries(0003_test)
+foreach(test_code ${test_src})
+    set(output_bin ${test_code}_test)
+    add_executable(${output_bin} ${test_code}/main.cpp)
+    set_target_properties(${output_bin} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+    target_link_libraries(${output_bin})
+endforeach(test_code)
