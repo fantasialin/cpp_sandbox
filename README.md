@@ -14,3 +14,9 @@
 2. gn gen out
 3. ninja -C out
 
+PLEASE use cmake
+
+something like
+1. cmake . -Bbuild_x
+2. cmake --build build_x --config=Release -v
+
