@@ -59,13 +59,13 @@ int lookup(int i, vector<int>&table){
     return table[i];
 }
 
-int Fibnacci_recur_mem(int n, vector<int>&table){
+int Fibonacci_recur_mem(int n, vector<int>&table){
     if(table.size()<n+1) return 0;//error
     table[0]=0;table[1]=1;
     return lookup(n,table);
 }
 
-int Fibnacci_iter(int n){
+int Fibonacci_iter(int n){
     if(n <= 0) return 0;
     if(n <= 1) return 1;
     vector<int> number_prev = {0,1};
@@ -74,6 +74,20 @@ int Fibnacci_iter(int n){
         result = number_prev[0] + number_prev[1];
         number_prev[0] = number_prev[1];
         number_prev[1] = result;
+    }
+    return result;
+}
+
+int TripleFibonacci_iter(int n){
+    if(n <= 1) return 0;
+    if(n <= 2) return 1;
+    vector<int> number_prev = {0,0,1};
+    int result = 1;
+    for(int i = 0; i < n-2 ; i++){
+        result = number_prev[0] + number_prev[1] + number_prev[2];
+        number_prev[0] = number_prev[1];
+        number_prev[1] = number_prev[2];
+        number_prev[2] = result;
     }
     return result;
 }
@@ -94,7 +108,7 @@ int main(int argc, char **argv){
     cout << "interative fib()" << endl;
     for(int i = 1; i < 40 ; i++){
         JOE_TIME_PROFILE_START()
-        int result = Fibnacci_iter(i);
+        int result = Fibonacci_iter(i);
         std::string str = std::string("fib(") + to_string(i) + std::string(") = ") + to_string(result);
         JOE_TIME_PROFILE_COUNT(str)
     }
@@ -106,10 +120,20 @@ int main(int argc, char **argv){
         LUT.clear();
         LUT.resize(i+1,-1);//inital value = -1
         JOE_TIME_PROFILE_START()
-        int result = Fibnacci_recur_mem(i,LUT);
+        int result = Fibonacci_recur_mem(i,LUT);
         std::string str = std::string("fib(") + to_string(i) + std::string(") = ") + to_string(result);
         JOE_TIME_PROFILE_COUNT(str)
     }
+    cout << endl;
+
+    cout << "interative triple fib()" << endl;
+    for(int i = 1; i < 40 ; i++){
+        JOE_TIME_PROFILE_START()
+        int result = TripleFibonacci_iter(i);
+        std::string str = std::string("triple-fib(") + to_string(i) + std::string(") = ") + to_string(result);
+        JOE_TIME_PROFILE_COUNT(str)
+    }
+    cout << endl;
 
     return 0;
 };
