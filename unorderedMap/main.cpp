@@ -96,7 +96,7 @@ ostream& operator<<(ostream& os, const tuple<T...>& tup)
     return os << "]";
 }
 
-#ifndef WIN32
+#if !defined(WIN32) && !defined(__APPLE__)
 template <template <typename, typename> class ContainerType, typename ValueType, typename AllocType>
 void print_container(const ContainerType<ValueType, AllocType> & c) {
     for (const auto& v : c) {
@@ -170,7 +170,7 @@ int main(int argc, char **argv){
     //std::bind
     vector<int> v {15, 35, 94, 50, 73, 58, 28,98};
     cout << count_if(v.cbegin(), v.cend(), [](int i){return i < 50;}) << endl;//lambda expression
-    #ifndef WIN32
+    #if !defined(WIN32) && !defined(__APPLE__)
     cout << count_if(v.cbegin(), v.cend(), bind2nd(less<int>(), 50)) << endl;//c++11
     #endif
     using namespace std::placeholders;
