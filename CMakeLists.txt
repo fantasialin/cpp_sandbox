@@ -49,4 +49,5 @@ add_subdirectory(TextQuery)
 add_subdirectory(thread)
 add_subdirectory(unorderedMap)
 add_subdirectory(variadic)
+add_subdirectory(image_processing)
 
