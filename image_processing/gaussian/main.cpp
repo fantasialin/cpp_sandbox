@@ -29,6 +29,7 @@ bool l1_normalize(vector<float> &data){
 }
 
 #define sigma 1.2f
+#define debug_ 0
 
 // This function takes an input image and applies a Gaussian blur to it, storing the result in the output image.
 bool test_function(ImageLte<float> &in, ImageLte<float> &out){
@@ -41,35 +42,60 @@ bool test_function(ImageLte<float> &in, ImageLte<float> &out){
     if(kernel_size % 2 == 0) kernel_size += 1; //make it odd
     std::cout << "kernel size : " << kernel_size << "\n";
     std::vector<float> kernel;
-    kernel.resize(kernel_size,0.0f);
+    auto size_ = kernel_size * kernel_size;
+    kernel.resize(size_,0.0f);
     int half_kernel_size = kernel_size/2;
 
-    for(int i = 0; i < kernel_size; ++i){
-        int x = i - half_kernel_size;
-        kernel[i] = expf(-(x*x)/(2.0f*sigma*sigma));
+    for(int i = 0; i < size_; ++i){
+        int x = i % kernel_size - half_kernel_size;
+        int y = i / kernel_size - half_kernel_size;
+
+        double power = -(x * x + y *y)/(2*sigma*sigma);
+        double val = 1./(TWOPI * sigma * sigma) * std::exp(power);
+        kernel[i] = val;
     }
     l1_normalize(kernel);
 
+    //print kernel
+    #if debug_
+    std::cout << "[ \n" << std::fixed << std::setprecision(3);
+    for(int j = 0; j < kernel_size ; j++){//y
+        for(int i = 0; i < kernel_size ; i++){//x
+            auto pos = i + j * kernel_size;
+            std::cout << "  " << kernel[pos];
+        }
+        std::cout << "\n";
+    }
+    std::cout << "  ]\n";
+    #endif
+
+    //convolve with kernel
     out = ImageLte<float>(width, height, channel);
     // get input image data
     std::vector<float> input_data;
+    std::vector<float> channel_data_in;
+    std::vector<float> channel_data_out;
+    int rect_size = width * height;
     for(int c = 0; c < channel; ++c){
-        std::vector<float> channel_data_in;
-        std::vector<float> channel_data_out;
         in.get_channel_data(channel_data_in, c);
-        //convolve with kernel
-        int rect_size = width * height;
         channel_data_out.resize(rect_size, 0.0f);
         for(int y = 0; y < height; ++y){
             for(int x = 0; x < width; ++x){
                 float sum = 0.0f;
-                for(int k = 0; k < kernel_size; ++k){
-                    int offset = k - half_kernel_size;
-                    int x_ = x + offset;
+                for(int k = 0; k < size_; ++k){
+                    int offset_x = k % kernel_size - half_kernel_size;
+                    int offset_y = k / kernel_size - half_kernel_size;
+                    int x_ = x + offset_x;
+                    int y_ = y + offset_y;
                     if(x_ < 0) x_ = 0;
                     if(x_ >= width) x_ = width - 1;
-                    sum += channel_data_in[y*width+x_] * kernel[k];
+                    if(y_ < 0) y_ = 0;
+                    if(y_ >= height) y_ = height - 1;
+                    sum += (channel_data_in[y_*width+x_] * kernel[k]);  
                 }
+                //clamp sum to [0,1]
+                // if(sum < 0.0) sum = 0.0;
+                // else if(sum > 1.0) sum = 1.0;
                 channel_data_out[y*width+x] = sum;
             }
         }
