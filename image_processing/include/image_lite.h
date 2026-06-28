@@ -877,7 +877,6 @@ inline bool ImageLte<T>::add_image(ImageLte<T> &rhs)
     if(rhs.channel != this->channel) return false;
     if(rhs.width != this->width) return false;
     if(rhs.height != this->height) return false;
-    if(rhs.mem_layout != this->mem_layout) return false;
 
     //std::vector<T> tmp_data;
     auto size = width * height * channel;
