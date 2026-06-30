@@ -1,5 +1,8 @@
 set(test_src
     gaussian
+    gaussianfast
+    bilateral
+    guided_filter
     template)
 
 
