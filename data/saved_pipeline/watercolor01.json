@@ -1,0 +1,330 @@
+{
+    "graph_name": "cv_paint saved pipeline",
+    "links": [
+        {
+            "from": 4,
+            "from_slot": 0,
+            "to": 3,
+            "to_slot": 0
+        },
+        {
+            "from": 3,
+            "from_slot": 0,
+            "to": 5,
+            "to_slot": 0
+        },
+        {
+            "from": 5,
+            "from_slot": 0,
+            "to": 6,
+            "to_slot": 0
+        },
+        {
+            "from": 7,
+            "from_slot": 0,
+            "to": 1,
+            "to_slot": 0
+        },
+        {
+            "from": 0,
+            "from_slot": 0,
+            "to": 7,
+            "to_slot": 0
+        },
+        {
+            "from": 1,
+            "from_slot": 0,
+            "to": 4,
+            "to_slot": 0
+        },
+        {
+            "from": 6,
+            "from_slot": 0,
+            "to": 2,
+            "to_slot": 0
+        }
+    ],
+    "nodes": [
+        {
+            "id": 0,
+            "name": "file image node",
+            "option": {
+                "image_path": "C:\\Users\\User\\Pictures\\Screenshots\\Screenshot 2026-07-18 224556.png"
+            },
+            "type": "cv_image_src_filter",
+            "x": -275.8807067871094,
+            "y": 146.3912353515625
+        },
+        {
+            "id": 1,
+            "name": "gpu upload node #3",
+            "option": {},
+            "type": "cv_gpu_upload_filter",
+            "x": 287.44207763671875,
+            "y": 269.4543762207031
+        },
+        {
+            "id": 2,
+            "name": "gpu rendering sink node #5",
+            "option": {
+                "debug_output": false,
+                "save_path": "output/"
+            },
+            "type": "cv_gpu_rendering_filter",
+            "x": 1838.9422607421875,
+            "y": 165.58770751953125
+        },
+        {
+            "id": 3,
+            "name": "glsl pigment adjust node #6",
+            "option": {
+                "isHSL": 1.0,
+                "staturation": 0.6570000052452087,
+                "value": 0.6010000109672546
+            },
+            "type": "cv_glsl_pigment_adj_filter",
+            "ui": {
+                "keys": [
+                    "staturation",
+                    "value",
+                    "isHSL"
+                ],
+                "ranges": [
+                    [
+                        0.30000001192092896,
+                        1.0
+                    ],
+                    [
+                        0.30000001192092896,
+                        1.0
+                    ],
+                    [
+                        0.0,
+                        1.0
+                    ]
+                ],
+                "values": [
+                    0.6570000052452087,
+                    0.6010000109672546,
+                    1.0
+                ]
+            },
+            "x": 818.0,
+            "y": 250.0
+        },
+        {
+            "id": 4,
+            "name": "glsl l0 smoothing node #7",
+            "option": {
+                "betaMax": 100000.0,
+                "jacobiIterations": 30.0,
+                "kappa": 2.0,
+                "lambda": 0.019999999552965164
+            },
+            "type": "cv_glsl_l0_smoothing_filter",
+            "ui": {
+                "keys": [
+                    "lambda",
+                    "kappa",
+                    "jacobiIterations",
+                    "betaMax"
+                ],
+                "ranges": [
+                    [
+                        9.999999747378752e-05,
+                        0.20000000298023224
+                    ],
+                    [
+                        1.0010000467300415,
+                        5.0
+                    ],
+                    [
+                        1.0,
+                        128.0
+                    ],
+                    [
+                        10.0,
+                        1000000.0
+                    ]
+                ],
+                "values": [
+                    0.019999999552965164,
+                    2.0,
+                    30.0,
+                    100000.0
+                ]
+            },
+            "x": 566.0,
+            "y": 284.0
+        },
+        {
+            "id": 5,
+            "name": "glsl contours node #8",
+            "option": {
+                "background": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "backgroundB": 1.0,
+                "backgroundG": 1.0,
+                "backgroundR": 1.0,
+                "color": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.6420000195503235
+                ],
+                "colorA": 0.6420000195503235,
+                "colorB": 0.0,
+                "colorG": 0.0,
+                "colorR": 0.0,
+                "preview": 0.0,
+                "range": 2.194000005722046,
+                "threshold": 0.492000013589859
+            },
+            "type": "cv_glsl_contours_filter",
+            "ui": {
+                "keys": [
+                    "threshold",
+                    "range",
+                    "colorR",
+                    "colorG",
+                    "colorB",
+                    "colorA",
+                    "preview",
+                    "backgroundR",
+                    "backgroundG",
+                    "backgroundB"
+                ],
+                "ranges": [
+                    [
+                        0.0,
+                        4.0
+                    ],
+                    [
+                        0.009999999776482582,
+                        4.0
+                    ],
+                    [
+                        0.0,
+                        1.0
+                    ],
+                    [
+                        0.0,
+                        1.0
+                    ],
+                    [
+                        0.0,
+                        1.0
+                    ],
+                    [
+                        0.0,
+                        1.0
+                    ],
+                    [
+                        0.0,
+                        1.0
+                    ],
+                    [
+                        0.0,
+                        1.0
+                    ],
+                    [
+                        0.0,
+                        1.0
+                    ],
+                    [
+                        0.0,
+                        1.0
+                    ]
+                ],
+                "values": [
+                    0.492000013589859,
+                    2.194000005722046,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.6420000195503235,
+                    0.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "x": 1132.0,
+            "y": 186.0
+        },
+        {
+            "id": 6,
+            "name": "glsl noise node #9",
+            "option": {
+                "gaussian": 1.0,
+                "strength": 0.19499999284744263
+            },
+            "type": "cv_glsl_noise_filter",
+            "ui": {
+                "keys": [
+                    "strength",
+                    "gaussian"
+                ],
+                "ranges": [
+                    [
+                        0.0,
+                        5.0
+                    ],
+                    [
+                        0.0,
+                        1.0
+                    ]
+                ],
+                "values": [
+                    0.19499999284744263,
+                    1.0
+                ]
+            },
+            "x": 1419.8824462890625,
+            "y": 155.0227813720703
+        },
+        {
+            "id": 7,
+            "name": "clahe node #7",
+            "option": {
+                "clip_limit": 2.5950000286102295,
+                "isHSL": false,
+                "tiles_x": 8,
+                "tiles_y": 8
+            },
+            "type": "cv_sw_clahe_filter",
+            "ui": {
+                "keys": [
+                    "clip_limit",
+                    "tiles_x",
+                    "tiles_y"
+                ],
+                "ranges": [
+                    [
+                        0.5,
+                        8.0
+                    ],
+                    [
+                        1.0,
+                        32.0
+                    ],
+                    [
+                        1.0,
+                        32.0
+                    ]
+                ],
+                "values": [
+                    2.5950000286102295,
+                    8.0,
+                    8.0
+                ]
+            },
+            "x": 9.0,
+            "y": 247.0
+        }
+    ],
+    "version": 1
+}
